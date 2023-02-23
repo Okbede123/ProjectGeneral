@@ -6,10 +6,10 @@
         </listeners>
 
     <parameter name = "url" value ="https://demo.guru99.com/v4/" />
-    <parameter name = "environment" value ="local" />
+    <parameter name = "environment" value ="grid" />
 
     <test name="Run on Chrome">
-        <parameter name="browser" value="chrome" />
+        <parameter name="browser" value="firefox" />
         <parameter name="osName" value="Windows" />
         <parameter name="osVersion" value="10" />
         <parameter name="port" value="5555" />

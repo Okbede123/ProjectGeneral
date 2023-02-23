@@ -1,9 +1,13 @@
 package cores.commons;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -124,6 +128,19 @@ public class BasePage {
         new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfAllElements(getListElement(locator,values)));
     }
 
+    public void moveToElement(String locator,String...values){
+        waitElementVisibility(locator,values);
+        new Actions(driver).moveToElement(getElement(locator,values)).perform();
+    }
+
+    public void selectValueWithText(String locator,String valueText,String...values){
+        new Select(getElement(locator,values)).selectByVisibleText(valueText);
+    }
+
+    public String getNameUrl(){
+       return driver.getCurrentUrl();
+    }
+
     public void switchToWindow(String id){
         driver.switchTo().window(id);
     }
@@ -163,6 +180,16 @@ public class BasePage {
                 }
             }
         }
+    }
+
+    public boolean isEscData(String locator,String...values){
+        ArrayList<String> getData = new ArrayList<>();
+        for (WebElement dataElement:getListElement(locator,values)) {
+            getData.add(dataElement.getText());
+        }
+        ArrayList<String> dataCheck = new ArrayList<>(getData);
+        Collections.sort(dataCheck);
+        return dataCheck.equals(getData);
     }
 
 }
