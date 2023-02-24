@@ -17,7 +17,7 @@
         <jackson.version>2.9.4</jackson.version>
         <webdrivermanager.version>4.2.2</webdrivermanager.version>
         <aspectj.version>1.8.10</aspectj.version>
-        <environment>runDev_Grid_Cloud_Testing_BrowserStack</environment>
+        <environment>TestCase</environment>
     </properties>
 
     <dependencies>
@@ -152,7 +152,7 @@
                 <configuration>
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
-                        <file>src\test\java\resource\demogrid\${environment}.xml</file>
+                        <file>src\test\java\resource\${environment}.xml</file>
                     </suiteXmlFiles>
 
                     <!-- Argument -->

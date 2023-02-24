@@ -1,6 +1,8 @@
 package testcase;
 
+import com.aventstack.extentreports.Status;
 import cores.commons.BaseTest;
+import cores.commons.reportconfig.ExtentManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,6 +10,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
+
+import java.lang.reflect.Method;
 
 public class Testcase extends BaseTest {
 
@@ -21,7 +25,9 @@ public class Testcase extends BaseTest {
     }
 
     @Test
-    public void TC_01(){
+    public void TC_01(Method method){
+        ExtentManager.startTest(method.getName(),"TC_01");
+        ExtentManager.getTest().log(Status.INFO,"start test");
         System.out.println("test");
 
     }
