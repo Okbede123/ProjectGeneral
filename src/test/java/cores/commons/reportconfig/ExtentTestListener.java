@@ -18,9 +18,10 @@ public class ExtentTestListener implements ITestListener {
         return iTestResult.getMethod().getConstructorOrMethod().getName();
     }
 
+
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        ExtentManager.extentReports.flush();
+
     }
 
     @Override
@@ -34,8 +35,9 @@ public class ExtentTestListener implements ITestListener {
         WebDriver driver = ((BaseTest)testClass).getDriver();
         String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
         getTest().log(Status.FAIL, "Test Failed", getTest().addScreenCaptureFromBase64String(base64Screenshot).getModel().getMedia().get(0));
-
     }
+
+
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
@@ -54,6 +56,6 @@ public class ExtentTestListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-
+        ExtentManager.extentReports.flush();
     }
 }

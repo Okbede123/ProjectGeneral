@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite parallel = "false" name = "Bankguru" thread-count = "1">
+<suite parallel = "classes" name = "Nopcommerce" thread-count = "2">
 
         <listeners>
             <listener class-name = "cores.commons.reportconfig.ExtentTestListener"/>
         </listeners>
 
-    <parameter name = "url" value ="https://demo.guru99.com/v4/" />
-    <parameter name = "environment" value ="grid" />
+    <parameter name = "url" value ="https://demo.nopcommerce.com/" />
+    <parameter name = "environment" value ="local" />
 
     <test name="Run on Chrome">
-        <parameter name="browser" value="firefox" />
+        <parameter name="browser" value="chrome" />
         <parameter name="osName" value="Windows" />
         <parameter name="osVersion" value="10" />
         <parameter name="port" value="5555" />
         <parameter name="ipAddress" value="192.168.1.8" />
         <classes>
+            <class name="testcase.TestCaseLogin" />
             <class name="testcase.Testcase" />
         </classes>
     </test>

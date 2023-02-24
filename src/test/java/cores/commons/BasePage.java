@@ -14,6 +14,8 @@ import java.util.Set;
 public class BasePage {
     WebDriver driver;
 
+    byte timeOut = 30;
+
     public BasePage(WebDriver driver){
         this.driver = driver;
     }
@@ -113,19 +115,19 @@ public class BasePage {
     }
 
     public void waitElementClick(String locator,String...values){
-        new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(getByLocator(castParameter(locator,values))));
+        new WebDriverWait(driver,timeOut).until(ExpectedConditions.elementToBeClickable(getByLocator(castParameter(locator,values))));
     }
 
     public void waitElementVisibility(String locator,String...values){
-        new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(castParameter(locator,values))));
+        new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOfElementLocated(getByLocator(castParameter(locator,values))));
     }
 
     public void waitElementInvisibility(String locator,String...values){
-        new WebDriverWait(driver,5).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(castParameter(locator,values))));
+        new WebDriverWait(driver,timeOut).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(castParameter(locator,values))));
     }
 
     public void waitListElementVisibility(String locator,String...values){
-        new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfAllElements(getListElement(locator,values)));
+        new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOfAllElements(getListElement(locator,values)));
     }
 
     public void moveToElement(String locator,String...values){
@@ -189,6 +191,17 @@ public class BasePage {
         }
         ArrayList<String> dataCheck = new ArrayList<>(getData);
         Collections.sort(dataCheck);
+        return dataCheck.equals(getData);
+    }
+
+    public boolean isDescending(String locator,String...values){
+        ArrayList<String> getData = new ArrayList<>();
+        for (WebElement dataElement:getListElement(locator,values)) {
+            getData.add(dataElement.getText());
+        }
+        ArrayList<String> dataCheck = new ArrayList<>(getData);
+        Collections.sort(dataCheck);
+        Collections.reverse(dataCheck);
         return dataCheck.equals(getData);
     }
 
