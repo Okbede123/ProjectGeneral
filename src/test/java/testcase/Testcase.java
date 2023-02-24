@@ -34,6 +34,6 @@ public class Testcase extends BaseTest {
 
     @AfterClass
     public void afterClass(){
-        closeBrowserDriver();
+        driver.quit();
     }
 }
